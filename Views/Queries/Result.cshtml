@@ -141,7 +141,7 @@
             </tbody>
         </table>
     }
-    else if (Model.QueryId.Equals("A1"))
+    else if (Model.QueryId.Equals("A3"))
     {
         <p style="font-size:20px">
             <b>Назви країн, розробники з яких продають програмні продукти принаймні за всіма тими цінами, що й розробник із кодом @Model.DevId</b>
@@ -166,41 +166,42 @@
             </tbody>
         </table>
     }
-    else if (Model.QueryId.Equals("A2"))
+    else if (Model.QueryId.Equals("A1"))
     {
         <p style="font-size:20px">
-            <b>Прізвища покупців, які придбали точно ті ж самі програмні продукти, що й покупець з email @Model.CustEmail</b>
+            <b>Email покупців, які придбали точно ті ж самі програмні продукти, що й покупець з призвищем @Model.CustSurname</b>
         </p>
         <table class="table">
             <thead>
                 <tr>
                     <th>
-                        Прізвище
+                        Email
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.CustLastNames.Count; i++)
+                @for (int i = 0; i < Model.CustEmails.Count; i++)
                 {
                     <tr>
                         <td>
-                            @Model.CustLastNames[i]
+                            @Model.CustEmails[i]
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     }
-    else if (Model.QueryId.Equals("A3"))
+    else if (Model.QueryId.Equals("A2"))
     {
         <p style="font-size:20px">
-            <b>Прізвища та email-и покупців з іменем @Model.CustName, які придбали всі наявні програмні продукти</b>
+            <b> Імена та email-и покупців з прізвищем @Model.CustSurname, які придбали всі наявні програмні продукти.
+            </b>
         </p>
         <table class="table">
             <thead>
                 <tr>
                     <th>
-                        Прізвище
+                        Ім'я
                     </th>
                     <th>
                         Email
@@ -208,11 +209,11 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.CustLastNames.Count; i++)
+                @for (int i = 0; i < Model.CustNames.Count; i++)
                 {
                     <tr>
                         <td>
-                            @Model.CustLastNames[i]
+                            @Model.CustNames[i]
                         </td>
                         <td>
                             @Model.CustEmails[i]

@@ -164,7 +164,7 @@
     <b>Запит 1</b>
 </p>
 <p style="font-size:17px">
-    Знайти назви країн, розробники з яких продають програмні продукти принаймні за всіма тими цінами, що й розробник із кодом К.
+    Знайти email покупців, які придбали точно ті ж самі програмні продукти, що й покупець з призвіщем E.
 </p>
 <div class="row">
     <div class="col-md-4">
@@ -173,8 +173,8 @@
             <input type="hidden" asp-for="ProdName" value="dummy" />
             <input type="hidden" asp-for="Price" value="0" />
             <div class="form-group">
-                <label class="control-label">Код розробника К</label>
-                <select asp-for="DevId" asp-items="@ViewBag.DevIds" class="form-control"></select>
+                <label class="control-label">Прізвище E</label>
+                <select asp-for="CustSurname" asp-items="@ViewBag.CustLastNames" class="form-control"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Надіслати" class="btn btn-success" />
@@ -188,7 +188,7 @@
     <b>Запит 2</b>
 </p>
 <p style="font-size:17px">
-    Знайти прізвища покупців, які придбали точно ті ж самі програмні продукти, що й покупець з email E.
+    Знайти імена та email-и покупців з прізвищем І, які придбали всі наявні програмні продукти.
 </p>
 <div class="row">
     <div class="col-md-4">
@@ -197,8 +197,8 @@
             <input type="hidden" asp-for="ProdName" value="dummy" />
             <input type="hidden" asp-for="Price" value="0" />
             <div class="form-group">
-                <label class="control-label">Email E</label>
-                <select asp-for="CustEmail" asp-items="@ViewBag.CustEmails" class="form-control"></select>
+                <label class="control-label">Прізвище І</label>
+                <select asp-for="CustSurname" asp-items="@ViewBag.CustLastNames" class="form-control"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Надіслати" class="btn btn-success" />
@@ -212,7 +212,7 @@
     <b>Запит 3</b>
 </p>
 <p style="font-size:17px">
-    Знайти прізвища та email-и покупців з іменем І, які придбали всі наявні програмні продукти.
+    Знайти назви країн, розробники з яких продають програмні продукти принаймні за всіма тими цінами, що й розробник із кодом К
 </p>
 <div class="row">
     <div class="col-md-4">
@@ -221,8 +221,8 @@
             <input type="hidden" asp-for="ProdName" value="dummy" />
             <input type="hidden" asp-for="Price" value="0" />
             <div class="form-group">
-                <label class="control-label">Ім'я І</label>
-                <select asp-for="CustName" asp-items="@ViewBag.CustNames" class="form-control"></select>
+                <label class="control-label">Код розробника К</label>
+                <select asp-for="DevId" asp-items="@ViewBag.DevIds" class="form-control"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Надіслати" class="btn btn-success" />

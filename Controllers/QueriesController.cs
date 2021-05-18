@@ -26,8 +26,6 @@ namespace TheGStore.Controllers
         private const string A2_PATH = @"C:\Users\PoixoN\Desktop\БД Лаба 2\Queries\A2.sql";
         private const string A3_PATH = @"C:\Users\PoixoN\Desktop\БД Лаба 2\Queries\A3.sql";
 
-        private const string T1_PATH = @"C:\Users\PoixoN\Desktop\БД Лаба 2\Queries\T1.sql";
-        private const string T2_PATH = @"C:\Users\PoixoN\Desktop\БД Лаба 2\Queries\T2.sql";
 
         public IConfiguration Configuration { get; }
         private readonly TheGStoreDbContext _context;
@@ -310,13 +308,13 @@ namespace TheGStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AdvancedQuery1(Query queryModel)
+        public IActionResult AdvancedQuery3(Query queryModel)
         {
-            string query = System.IO.File.ReadAllText(A1_PATH);
+            string query = System.IO.File.ReadAllText(A3_PATH);
             query = query.Replace("K", queryModel.DevId.ToString());
             query = query.Replace("\r\n", " ");
             query = query.Replace('\t', ' ');
-            queryModel.QueryId = "A1";
+            queryModel.QueryId = "A3";
             queryModel.CountryNames = new List<string>();
 
             using (var connection = new SqlConnection(Configuration.GetConnectionString("DefaultConnection")))
@@ -348,14 +346,14 @@ namespace TheGStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AdvancedQuery2(Query queryModel)
+        public IActionResult AdvancedQuery1(Query queryModel)
         {
-            string query = System.IO.File.ReadAllText(A2_PATH);
-            query = query.Replace("Y", "N\'" + queryModel.CustEmail.ToString() + "\'");
+            string query = System.IO.File.ReadAllText(A1_PATH);
+            query = query.Replace("Y", "N\'" + queryModel.CustSurname.ToString() + "\'");
             query = query.Replace("\r\n", " ");
             query = query.Replace('\t', ' ');
-            queryModel.QueryId = "A2";
-            queryModel.CustLastNames = new List<string>();
+            queryModel.QueryId = "A1";
+            queryModel.CustEmails = new List<string>();
 
             using (var connection = new SqlConnection(Configuration.GetConnectionString("DefaultConnection")))
             {
@@ -368,7 +366,7 @@ namespace TheGStore.Controllers
                         int flag = 0;
                         while (reader.Read())
                         {
-                            queryModel.CustLastNames.Add(reader.GetString(0));
+                            queryModel.CustEmails.Add(reader.GetString(0));
                             flag++;
                         }
 
@@ -384,14 +382,14 @@ namespace TheGStore.Controllers
             return RedirectToAction("Result", queryModel);
         }
 
-        public IActionResult AdvancedQuery3(Query queryModel)
+        public IActionResult AdvancedQuery2(Query queryModel)
         {
-            string query = System.IO.File.ReadAllText(A3_PATH);
-            query = query.Replace("Y", "N\'" + queryModel.CustName.ToString() + "\'");
+            string query = System.IO.File.ReadAllText(A2_PATH);
+            query = query.Replace("Y", "N\'" + queryModel.CustSurname.ToString() + "\'");
             query = query.Replace("\r\n", " ");
             query = query.Replace('\t', ' ');
-            queryModel.QueryId = "A3";
-            queryModel.CustLastNames = new List<string>();
+            queryModel.QueryId = "A2";
+            queryModel.CustNames = new List<string>();
             queryModel.CustEmails = new List<string>();
 
             using (var connection = new SqlConnection(Configuration.GetConnectionString("DefaultConnection")))
@@ -405,7 +403,7 @@ namespace TheGStore.Controllers
                         int flag = 0;
                         while (reader.Read())
                         {
-                            queryModel.CustLastNames.Add(reader.GetString(0));
+                            queryModel.CustNames.Add(reader.GetString(0));
                             queryModel.CustEmails.Add(reader.GetString(1));
                             flag++;
                         }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Game>
 
 @{
-    ViewData["Title"] = "Продукти";
+    ViewData["Title"] = "Ігри";
 }
 
 @if (ViewBag.DevId == 0)
@@ -86,49 +86,50 @@ else
                     </td>
                 }
 
-                <td class="row">
+                <td >
                     <form class="d-block col-md-4" method="get" asp-controller="Orders" asp-action="Purchase">
                         <input type="hidden" name="gameId" value="@item.Id" />
                         <input type="hidden" name="devId" value="@item.DeveloperId" />
                         <p>
-                            <input type="submit" class="btn btn-primary" value="Купити" style="width:150px" />
+                            <input type="submit" class="btn btn-primary" value="Купити" style="width:250px" />
                         </p>
                     </form>
                     <form class="d-block col-md-4" method="get" asp-action="Edit" asp-route-id="@item.Id">
                         <p>
                             <input type="hidden" name="devId" value="@ViewBag.DevId" />
-                            <input type="submit" class="btn btn-warning" value="Відредагувати" style="width:150px" />
+                            <input type="submit" class="btn btn-warning" value="Відредагувати" style="width:250px" />
                         </p>
                     </form>
                     <p class="d-block col-md-4">
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@targetId" style="width:150px">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@targetId" style="width:250px">
                             Видалити
                         </button>
                     </p>
 
-                    <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Сповіщення</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body delete-modal-body">
-                                    Справді видалити гру?
-                                </div>
-                                <div class="modal-footer">
-                                    <form asp-action="Delete" asp-route-id="@item.Id">
-                                        <button type="submit" class="btn btn-danger">Видалити</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </td>
             </tr>
+            <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Сповіщення</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body delete-modal-body">
+                            Справді видалити гру?
+                        </div>
+                        <div class="modal-footer">
+                            <form asp-action="Delete" asp-route-id="@item.Id">
+                                <button type="submit" class="btn btn-danger">Видалити</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     </tbody>
 </table>

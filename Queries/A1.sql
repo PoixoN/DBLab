@@ -1,16 +1,25 @@
-SELECT Countries.name
-FROM Countries
-WHERE Countries.id IN
-	(SELECT Developers.countryId
-	 FROM Developers
-	 WHERE Developers.id IN
-		(SELECT D.id
-		 FROM Developers D
-		 WHERE NOT EXISTS
-	 		((SELECT Software.price
-			  FROM Software
-		      WHERE Software.developerId = K)
-		     EXCEPT
-		     (SELECT Software.price
-		      FROM Software
-		      WHERE Software.developerId = D.id AND Software.developerId != K))));
+SELECT C.email
+FROM Customers C
+WHERE C.lastName != Y
+AND NOT EXISTS
+    ((SELECT Orders.gameId
+      FROM Orders
+      WHERE Orders.customerId = C.id)
+     EXCEPT
+     (SELECT Orders.gameId
+      FROM Orders
+      WHERE Orders.customerId IN
+          (SELECT Customers.id
+           FROM Customers
+           WHERE Customers.email = Y)))
+AND NOT EXISTS
+    ((SELECT Orders.gameId
+      FROM Orders
+      WHERE Orders.customerId IN
+  	      (SELECT Customers.id
+           FROM Customers
+           WHERE Customers.email = Y))
+     EXCEPT
+     (SELECT Orders.gameId
+      FROM Orders
+      WHERE Orders.customerId = C.id));
